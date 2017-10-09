@@ -4,6 +4,7 @@
 /[Bb]uild/
 /[Bb]uilds/
 /Assets/AssetStoreTools*
+UNITY/JorgeGonz_PrototipadoTest_U3D/Library/*
 
 # Visual Studio 2015 cache directory
 /.vs/
