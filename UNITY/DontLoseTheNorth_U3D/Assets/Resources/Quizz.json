@@ -1,0 +1,136 @@
+{
+    "tests": [
+        {
+            "idPregunta": 0,
+            "enunciado": "¿Por qué a Odín le falta un ojo?",
+            "opciones": [
+                "Se lo quitó él mismo para obtener sabiduría",
+                "A Odín no le falta ningún ojo"
+            ],
+            "resultados": [
+                true,
+                false
+            ],
+            "explicacion": "Odín sacrificó uno de sus ojos en el Pozo de Mimir para poder acceder a la sabiduría infinita y poder conocerlo todo (menos el futuro)"
+        },
+        {
+            "idPregunta": 1,
+            "enunciado": "¿Cuántas puertas tiene el Valhalla?",
+            "opciones": [
+                "259",
+                "540"
+            ],
+            "resultados": [
+                false,
+                true
+            ],
+            "explicacion": "Cada puerta es tan ancha como para que ochenta guerreros puedan pasar por ellas marchando lado a lado"
+        },
+        {
+            "idPregunta": 2,
+            "enunciado": "¿Cómo se llama el palacio de Thor?",
+            "opciones": [
+                "Bilskirnir",
+                "Fensalir"
+            ],
+            "resultados": [
+                true,
+                false
+            ],
+            "explicacion": "Breiðablik es el hogar de Balder, dios de la luz, la belleza y la inocencia.\n\nValhalla es el salón al que van los guerreros caídos en batalla.\n\nFensalir es el palacio de Frigg, diosa de la fertilidad, el amor, el manejo del hogar, el matrimonio, la maternidad y las artes domésticas."
+        },
+        {
+            "idPregunta": 3,
+            "enunciado": "De los Nueve Reinos del Yggdrasil, ¿cuál es el Reino de los hombres?",
+            "opciones": [
+                "Alfheim",
+                "Midgard"
+            ],
+            "resultados": [
+                false,
+                true
+            ],
+            "explicacion": "Faltaría Asgard, el Reino de los dioses (Æsir).\nHelheim es el Reino de los muertos.\nSvartálfaheim es el Reino de los elfos oscuros\nNiflheim es el Reino de las nieblas y el terror.\nJötunheim es el Reino de los gigantes.\nVanaheim es el Reino de los vanir (la tribu de los dioses de la naturaleza y de la fertilidad).\nAlfheim es el Reino de los elfos de la luz.\nMuspelheim es el mundo primordial del fuego."
+        },
+        {
+            "idPregunta": 4,
+            "enunciado": "¿Qué son las valquirias?",
+            "opciones": [
+                "Así se llamaba a las mujeres que morían en las batallas",
+                "Deidades femeninas que llevaban a los caídos en batalla al Valhalla"
+            ],
+            "resultados": [
+                false,
+                true
+            ],
+            "explicacion": "Las valquirias elegían a aquellos guerreros que hubieran destacado en vida por su capacidad para luchar y resistencia para llevarlos al Valhalla.\nNo sólo acompañaban a los muertos en su viaje, también los cuidaban durante su estancia en el Valhalla."
+        },
+        {
+            "idPregunta": 5,
+            "enunciado": "¿Cómo se llamaron los primeros seres humanos creados por los dioses?",
+            "opciones": [
+                "Ask y Embla",
+                "Líf y Lífthrasir"
+            ],
+            "resultados": [
+                true,
+                false
+            ],
+            "explicacion": "Tras crear los Nueve Reinos, Odín, Vili y Vé encontraron dos árboles en una playa y crearon hombres de ellos.\nOdín les dio espíritu y vida, Vili sabiduría y movimiento, y Vé forma, habla, oído y vista.\nLes dieron ropas y nombres.\nEl hombre se llamó Ask (fresno) y la mujer Embla (olmo), y de ellos se engendró la estirpe de los hombres.\nOtra versión atribuye la creación de los hombres a Odín, Hœnir y Lóðurr."
+        },
+        {
+            "idPregunta": 6,
+            "enunciado": "Asgard y Midgard están conectados por un puente de arcoíris ardiente llamado...",
+            "opciones": [
+                "Ginnungagap",
+                "Bifröst"
+            ],
+            "resultados": [
+                false,
+                true
+            ],
+            "explicacion": "Según la Edda prosaica, el puente finaliza en la bóveda celestial donde el dios Heimdal, el vigilante, tiene su residencia llamada Himinbjörg. Desde allí vigila a los gigantes."
+        },
+        {
+            "idPregunta": 7,
+            "enunciado": "¿Quiénes son las Nornas?",
+            "opciones": [
+                "Son divinidades femeninas que controlan el destino de las personas",
+                "Son las encargadas de mantener el orden en los Nueve Reinos de Yggdrasil"
+            ],
+            "resultados": [
+                true,
+                false
+            ],
+            "explicacion": "Las nornas controlan el destino de las personas tejiendo un telar para cada una, de los cuales, la longitud de cada cuerda es la vida de una persona. Si una cuerda se acaba, la vida de esa persona también."
+        },
+        {
+            "idPregunta": 8,
+            "enunciado": "Asgard y Midgard están conectados por un puente de arcoíris ardiente llamado...",
+            "opciones": [
+                "Bergelmir",
+                "Heimdall"
+            ],
+            "resultados": [
+                false,
+                true
+            ],
+            "explicacion": "Hijo de Odín y de nueve mujeres gigantes que lo nutrieron con sangre de jabalí."
+        },
+        {
+            "idPregunta": 9,
+            "enunciado": "¿Quién son los padres de Loki?",
+            "opciones": [
+                "Odín y Fregg",
+                "Farbauti y Laufey"
+            ],
+            "resultados": [
+                false,
+                true
+            ],
+            "explicacion": "Hijo de los gigantes Farbauti y Laufey, tiene dos hermanos, Helblindi y Býleistr, de los que poco se sabe."
+        }
+    ]
+}
+
+
