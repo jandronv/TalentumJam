@@ -4,6 +4,13 @@ using UnityEngine;
 
 public class MovementManager : MonoBehaviour {
 
+    public GameObject flecha_00;
+    public GameObject flecha_01;
+    public GameObject flecha_02;
+    public GameObject flecha_03;
+    public Material blackMaterial;
+    public Material[] currentMaterial;
+
     //0 -> ArribaDcha
     //1 -> AbajoDcha
     //2 -> AbajoIzq
@@ -18,7 +25,8 @@ public class MovementManager : MonoBehaviour {
 
     private void Update() {
         if (Input.GetKeyDown(KeyCode.W)) {
-
+            currentMaterial =
+            //flecha_00.GetComponent<MeshRenderer>().materials = blackMaterial;
         } else if (Input.GetKeyDown(KeyCode.A)) {
 
         } else if (Input.GetKeyDown(KeyCode.S)) {

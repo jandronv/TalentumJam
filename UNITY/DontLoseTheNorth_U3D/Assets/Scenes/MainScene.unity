@@ -148,6 +148,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a329a992a64194f42bc15a079b9d597a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  flecha_00: {fileID: 0}
+  flecha_01: {fileID: 0}
+  flecha_02: {fileID: 0}
+  flecha_03: {fileID: 0}
 --- !u!1001 &1556067153
 Prefab:
   m_ObjectHideFlags: 0
