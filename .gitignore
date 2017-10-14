@@ -13,8 +13,7 @@ Temp/
 Debug/
 .vs/
 *.meta
-/BUILDS
-/OTROS
-/AUDIOS
-/UNITY/*/*.config
-/UNITY/*/*.ServerData
+/*/*.config
+/*/*.ServerData
+/*/Builds/
+UNITY/*/Library/

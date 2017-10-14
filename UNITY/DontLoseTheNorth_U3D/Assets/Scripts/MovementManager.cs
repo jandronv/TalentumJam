@@ -15,11 +15,36 @@ public class MovementManager : MonoBehaviour {
     public Material blackMaterial;
     private Material[] currentMaterial;
     private Material[] newMaterial;
+    public float movSpeed = 5.0f;
 
     void Awake() {
         newMaterial = new Material[1];
         newMaterial[0] = blackMaterial;
         currentMaterial = flecha_00.GetComponent<MeshRenderer>().materials;
+    }
+
+
+
+
+    //StartCoroutine(MoveOverSeconds (gameObject, new Vector3(0.0f, 10f, 0f), 5f));
+
+    public IEnumerator MoveOverSpeed(GameObject objectToMove, Vector3 endPosition, float speed) {
+        // speed should be 1 unit per second
+        while (objectToMove.transform.position != endPosition) {
+            objectToMove.transform.position = Vector3.MoveTowards(objectToMove.transform.position, endPosition, speed * Time.deltaTime);
+            yield return new WaitForEndOfFrame();
+        }
+    }
+
+    public IEnumerator MoveOverSeconds(GameObject objectToMove, Vector3 end, float seconds) {
+        float elapsedTime = 0;
+        Vector3 startingPos = objectToMove.transform.position;
+        while (elapsedTime < seconds) {
+            transform.position = Vector3.Lerp(startingPos, end, (elapsedTime / seconds));
+            elapsedTime += Time.deltaTime;
+            yield return new WaitForEndOfFrame();
+        }
+        transform.position = end;
     }
 
     //0 -> ArribaDcha
@@ -32,8 +57,18 @@ public class MovementManager : MonoBehaviour {
         switch (posicion) {
             case 0: {
                     newTile.transform.position = new Vector3(newTile.transform.position.x + 15, newTile.transform.position.y, newTile.transform.position.z);
-                    newTile.transform.Translate(currentTile.transform.position);
-                    currentTile.transform.Translate(new Vector3(currentTile.transform.position.x - 15, currentTile.transform.position.y, currentTile.transform.position.z));
+
+                    float startTime = Time.time;
+                    float journeyLength = Vector3.Distance(newTile.transform.position, currentTile.transform.position);
+                    float distCovered = (Time.time - startTime) * movSpeed;
+                    float fracJourney = distCovered / journeyLength;
+
+                    newTile.transform.position = Vector3.Lerp(newTile.transform.position, currentTile.transform.position, fracJourney);
+
+
+                    //newTile.transform.Translate(currentTile.transform.position);
+                    /*Vector3.Lerp(newTile.transform.position, currentTile.transform.position, movSpeed)*/;
+                    //currentTile.transform.Translate(new Vector3(currentTile.transform.position.x - 15, currentTile.transform.position.y, currentTile.transform.position.z));
                     //GameObject currentAux = currentTile;
                     //Destroy(currentTile);
                     //currentTile = newTile;
