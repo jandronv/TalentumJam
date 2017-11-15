@@ -23,11 +23,6 @@ public class MovementManager : MonoBehaviour {
         currentMaterial = flecha_00.GetComponent<MeshRenderer>().materials;
     }
 
-
-
-
-    //StartCoroutine(MoveOverSeconds (gameObject, new Vector3(0.0f, 10f, 0f), 5f));
-
     public IEnumerator MoveOverSpeed(GameObject objectToMove, Vector3 endPosition, float speed) {
         // speed should be 1 unit per second
         while (objectToMove.transform.position != endPosition) {
@@ -40,54 +35,69 @@ public class MovementManager : MonoBehaviour {
         float elapsedTime = 0;
         Vector3 startingPos = objectToMove.transform.position;
         while (elapsedTime < seconds) {
-            transform.position = Vector3.Lerp(startingPos, end, (elapsedTime / seconds));
+            objectToMove.transform.position = Vector3.Lerp(startingPos, end, (elapsedTime / seconds));
             elapsedTime += Time.deltaTime;
             yield return new WaitForEndOfFrame();
         }
-        transform.position = end;
     }
 
-    //0 -> ArribaDcha
-    //1 -> AbajoDcha
-    //2 -> AbajoIzq
-    //3 -> ArribaIzq
-    public void InstanceNextTile(GameObject paco, int posicion) {
+    public IEnumerator FadeOverSeconds(GameObject objectToFade, float seconds) {
+        float elapsedTime = 0;
+        while (elapsedTime < seconds) {
+            var material = objectToFade.GetComponent<Renderer>().material;
+            var color = material.color;
+            material.color = new Color(color.r, color.g, color.b, color.a - (elapsedTime / seconds));
+            elapsedTime += Time.deltaTime;
+            yield return new WaitForEndOfFrame();
+        }
+    }
+
+    public IEnumerator WaitSomeSeconds(float seconds) {
+        yield return new WaitForSeconds(seconds);
+    }
+
+    //0 -> ArribaDcha. N
+    //1 -> AbajoDcha. E
+    //2 -> AbajoIzq. S
+    //3 -> ArribaIzq. O
+    public void InstanceNextTile(GameObject nextTile, int posicion) {
+        //TODO: ahora es ChooseRandomTile, más tarde será una leida del mapa
         GameObject newTile = Instantiate<GameObject>(ChooseRandomTile()) as GameObject;
+        Vector3 fadePosition = new Vector3();
         newTile.transform.SetParent(tileHolder.transform);
         switch (posicion) {
             case 0: {
-                    newTile.transform.position = new Vector3(newTile.transform.position.x + 15, newTile.transform.position.y, newTile.transform.position.z);
-
-                    float startTime = Time.time;
-                    float journeyLength = Vector3.Distance(newTile.transform.position, currentTile.transform.position);
-                    float distCovered = (Time.time - startTime) * movSpeed;
-                    float fracJourney = distCovered / journeyLength;
-
-                    newTile.transform.position = Vector3.Lerp(newTile.transform.position, currentTile.transform.position, fracJourney);
-
-
-                    //newTile.transform.Translate(currentTile.transform.position);
-                    /*Vector3.Lerp(newTile.transform.position, currentTile.transform.position, movSpeed)*/;
-                    //currentTile.transform.Translate(new Vector3(currentTile.transform.position.x - 15, currentTile.transform.position.y, currentTile.transform.position.z));
-                    //GameObject currentAux = currentTile;
-                    //Destroy(currentTile);
-                    //currentTile = newTile;
+                    newTile.transform.position = new Vector3(newTile.transform.position.x + 15, newTile.transform.position.y, newTile.transform.position.z);                    
+                    fadePosition = new Vector3(currentTile.transform.position.x-5, currentTile.transform.position.y, currentTile.transform.position.z);
                     break;
                 }
             case 1: {
-                    newTile.transform.position = new Vector3(newTile.transform.position.x + 15, newTile.transform.position.y, newTile.transform.position.z);
+                    newTile.transform.position = new Vector3(newTile.transform.position.x, newTile.transform.position.y, newTile.transform.position.z+15);
+                    fadePosition = new Vector3(currentTile.transform.position.x, currentTile.transform.position.y, currentTile.transform.position.z-5);
                     break;
                 }
             case 2: {
-                    newTile.transform.position = new Vector3(newTile.transform.position.x, newTile.transform.position.y, newTile.transform.position.z - 15);
+                    newTile.transform.position = new Vector3(newTile.transform.position.x - 15, newTile.transform.position.y, newTile.transform.position.z);
+                    fadePosition = new Vector3(currentTile.transform.position.x + 5, currentTile.transform.position.y, currentTile.transform.position.z);
                     break;
                 }
             case 3: {
-                    newTile.transform.position = new Vector3(newTile.transform.position.x - 15, newTile.transform.position.y, newTile.transform.position.z);
+                    newTile.transform.position = new Vector3(newTile.transform.position.x, newTile.transform.position.y, newTile.transform.position.z-15);
+                    fadePosition = new Vector3(currentTile.transform.position.x, currentTile.transform.position.y, currentTile.transform.position.z+5);
                     break;
                 }
-
         }
+        StartCoroutine(MoveOverSeconds(newTile, currentTile.transform.position, movSpeed));
+        StartCoroutine(MoveOverSeconds(currentTile, fadePosition, movSpeed));
+        //StartCoroutine(FadeOverSeconds(currentTile, movSpeed));
+        Destroy(currentTile, 0.5f);
+        currentTile = new GameObject();
+        currentTile = newTile;
+        StartCoroutine(WaitSomeSeconds(3f));
+        flecha_00.GetComponent<MeshRenderer>().materials = currentMaterial;
+        flecha_01.GetComponent<MeshRenderer>().materials = currentMaterial;
+        flecha_02.GetComponent<MeshRenderer>().materials = currentMaterial;
+        flecha_03.GetComponent<MeshRenderer>().materials = currentMaterial;
     }
 
     private void Update() {
@@ -103,36 +113,19 @@ public class MovementManager : MonoBehaviour {
         if (Input.GetKeyDown(KeyCode.W)) {
             //Cambio de materiales
             flecha_00.GetComponent<MeshRenderer>().materials = newMaterial;
-            flecha_01.GetComponent<MeshRenderer>().materials = currentMaterial;
-            flecha_02.GetComponent<MeshRenderer>().materials = currentMaterial;
-            flecha_03.GetComponent<MeshRenderer>().materials = currentMaterial;
             //Instanciar siguiente tile
             InstanceNextTile(null, 0);
         } else if (Input.GetKeyDown(KeyCode.D)) {
-            //Cambio de materiales
-            flecha_00.GetComponent<MeshRenderer>().materials = currentMaterial;
             flecha_01.GetComponent<MeshRenderer>().materials = newMaterial;
-            flecha_02.GetComponent<MeshRenderer>().materials = currentMaterial;
-            flecha_03.GetComponent<MeshRenderer>().materials = currentMaterial;
-            //Instanciar siguiente tile
             InstanceNextTile(null, 1);
         } else if (Input.GetKeyDown(KeyCode.S)) {
-            //Cambio de materiales
-            flecha_00.GetComponent<MeshRenderer>().materials = currentMaterial;
-            flecha_01.GetComponent<MeshRenderer>().materials = currentMaterial;
             flecha_02.GetComponent<MeshRenderer>().materials = newMaterial;
-            flecha_03.GetComponent<MeshRenderer>().materials = currentMaterial;
-            //Instanciar siguiente tile
             InstanceNextTile(null, 2);
         } else if (Input.GetKeyDown(KeyCode.A)) {
-            //Cambio de materiales
-            flecha_00.GetComponent<MeshRenderer>().materials = currentMaterial;
-            flecha_01.GetComponent<MeshRenderer>().materials = currentMaterial;
-            flecha_02.GetComponent<MeshRenderer>().materials = currentMaterial;
             flecha_03.GetComponent<MeshRenderer>().materials = newMaterial;
-            //Instanciar siguiente tile
             InstanceNextTile(null, 3);
         }
+        
     }
 
 }

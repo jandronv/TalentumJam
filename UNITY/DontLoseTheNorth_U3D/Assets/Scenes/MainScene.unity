@@ -193,8 +193,13 @@ Prefab:
     - target: {fileID: 114558690433352830, guid: 7b7ce9c9d6765ff41ab4e3af9640031a,
         type: 2}
       propertyPath: movSpeed
-      value: 25
+      value: 0.5
       objectReference: {fileID: 0}
+    - target: {fileID: 114558690433352830, guid: 7b7ce9c9d6765ff41ab4e3af9640031a,
+        type: 2}
+      propertyPath: blackMaterial
+      value: 
+      objectReference: {fileID: 2100000, guid: 005b037a8495dde4fb414a4d3292620d, type: 2}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 7b7ce9c9d6765ff41ab4e3af9640031a, type: 2}
   m_IsPrefabParent: 0
